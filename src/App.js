@@ -1,22 +1,34 @@
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
+import Card from './components/Card';
+import Search from './components/Search'
 
 function App() {
+  //const [initialData, searchString] = useState([]);
+  const [searchString, setSearchString] = useState("")
+  const [data, setData] = useState([]);
+
+  const seachProps = {
+    searchString,
+    setSearchString
+  }
+
+  useEffect(() => {
+    console.log(searchString)
+  }, [searchString])
+
   return (
-    <div className="flex h-screen">
-      <header className="m-auto">
+    <div className="">
+      <div className="p-4 max-w-2xl mx-auto">
         <img src={logo} className="h-56 w-56 mx-auto" alt="logo" />
-        <p className="text-center">
-          Edit <code>src/App.js</code> and save to reload. :)
-        </p>
-        <a
-          className="bg-indigo-400 px-10 py-3 block rounded-md text-center font-bold text-white mt-10"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div className="mt-10 mb-10">
+          <Search props={seachProps} />
+        </div>
+        
+        <div className="space-y-5">
+          <Card data="test" />
+        </div>
+      </div>
     </div>
   );
 }
